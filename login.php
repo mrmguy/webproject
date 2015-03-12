@@ -40,7 +40,7 @@
           $stmt->fetch();
           
           if (!$user_check) {
-            echo "You need to register";
+            echo "*Your username / password is not valid.";
           }
           else {
             echo $user_check;

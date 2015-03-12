@@ -11,13 +11,6 @@
   //   echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   // }
 
-  //connect to database
-
-// include("sqldb.php");
-     
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +58,7 @@
 
       </div>
       <div class = "col-sm-9">
-        <div class ="col-sm-6">
+        <div class ="col-sm-3">
 
 
 <!-- form entry to log in -->
@@ -74,7 +67,7 @@
           <fieldset>
           	<legend>Log In</legend>
           	<p>UserName:</p>
-              <p><input type="text" name="user_name" id = "user_name"><div id = "pwcheck"></div></p>
+              <p><input type="text" name="user_name" id = "user_name"></p>
 
               <p>Password:</p>
               <p><input type="password" name="pw" id= "pw"></p>
@@ -86,8 +79,9 @@
           </form>
           <p>Not a member? <a href="register.php">Register</a></p>
         </div>
-        <div class ="col-sm-6">
-          
+        <div class ="col-sm-9">
+          </br></br></br></br>
+          <div id = "pwcheck"></div>
         </div>
 
 
