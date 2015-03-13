@@ -1,7 +1,7 @@
 <?php
   session_start();
   if (isset($_SESSION['valid_user'])) {
-      echo $_SESSION['valid_user'];
+      header('Location: listing.php');
   }
   error_reporting(E_ALL);
   ini_set('display-errors', 'On');

@@ -14,5 +14,8 @@ CREATE TABLE restaurant (
 	rating TINYINT(2),
 	cost FLOAT(6,2),
 	diners INT,
-	date_of_visit DATE
+	date_of_visit DATE,
+	show_public TINYINT(1) DEFAULT NULL,
+	user VARCHAR(255),
+	FOREIGN KEY (user) REFERENCES users(user_name)
 	) ENGINE=innodb;
