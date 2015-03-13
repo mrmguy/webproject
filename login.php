@@ -19,8 +19,6 @@
 			WHERE user_name = ? AND password = ?"))) {
             echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          echo $_POST['user_name'];
-          echo $_POST['pw'];
           $user = $_POST['user_name'];
           $password = $_POST['pw'];
           if (!$stmt->bind_param("ss", $user, $password)) {
@@ -40,11 +38,11 @@
           $stmt->fetch();
           
           if (!$user_check) {
-            echo "*Your username / password is not valid.";
+            echo "*Your username / password is not valid.*";
           }
           else {
-            echo $user_check;
             $_SESSION["valid_user"]=$user_check;
+            echo "true";
           }
           
           // while ($stmt->fetch()) {

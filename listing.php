@@ -12,64 +12,19 @@
   // }
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Restaurant Tracker</title>
+  <title>Restaurant Tracker</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="custom.css">
-  <script type="text/javascript">
-  function validate() {
-    var x = document.getElementById("user_name").value;
-    var y = document.getElementById("pw").value;
-    var valid = true;
-    if (x == null || x == "") {
-      document.getElementById("pwcheck").innerHTML = "You must enter a username.</br>";
-      valid = false;
-    };
-    if (y == null || y == "") {
-      document.getElementById("pwcheck").innerHTML = "You must enter a password.</br>";
-      valid = false;
-    };
-    if (!valid) {
-      return;
-    }
-    else {
-      check_pw();
-    }
-  }
-  function check_pw() {
-    var rec=new XMLHttpRequest();
-    var argument = "user_name=" + encodeURI(document.getElementById('user_name').value)+"&pw="+encodeURI(document.getElementById('pw').value);
-    rec.onreadystatechange=function()
-    {
-    if (rec.readyState==4 && rec.status==200)
-      {
-        var response = rec.responseText;
-        if (response.charAt(0) == "t") {
-          window.location.href="listing.php";
-        }
-        else {
-          document.getElementById("pwcheck").innerHTML=rec.responseText;
-        }
-      }
-    }
-
-    rec.open("POST","login.php", "true");
-    rec.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    // rec.setRequestHeader("Content-length", "argument.length");
-    // rec.setRequestHeader("Connection", "close");
-    rec.send(argument);
-  }
-
-  </script>
 </head>
 <body>
+  <body>
   <div class = "container">
 
     <div class="jumbotron">
@@ -90,8 +45,8 @@
 
           <form>
           <fieldset>
-          	<legend>Log In</legend>
-          	<p>UserName:</p>
+            <legend>Log In</legend>
+            <p>UserName:</p>
               <p><input type="text" name="user_name" id = "user_name"></p>
 
               <p>Password:</p>
@@ -119,4 +74,6 @@
 //   $mysqli->close();
  ?>
 </body>   
+</html>
+</body>
 </html>
