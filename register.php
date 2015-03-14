@@ -33,32 +33,56 @@
     var pass2 = document.getElementById("pw2").value;
     var valid = true;
     if (n == null || n == "") {
-      document.getElementById("no_entry").innerHTML = "<p>You must enter a name.</p>";
+      document.getElementById("no_name").innerHTML = "You must enter a name.";
       valid = false;
+    } else {
+      document.getElementById("no_name").innerHTML = "</br>";
     };
     if (un == null || un == "") {
-      document.getElementById("no_entry").innerHTML = "You must enter a username.</br>";
+      document.getElementById("no_user").innerHTML = "You must enter a username.";
       valid = false;
+    } else {
+      document.getElementById("no_user").innerHTML = "</br>";
     };
     if (pass == null || pass == "") {
-      document.getElementById("no_entry").innerHTML = "You must enter a password.</br>";
+      document.getElementById("no_pw").innerHTML = "You must enter a password.";
       valid = false;
+    } else {
+      document.getElementById("no_pw").innerHTML = "</br>";
     };
     if (pass2 == null || pass2 == "") {
-      document.getElementById("no_entry").innerHTML = "You must confirm password.</br>";
+      document.getElementById("no_pw2").innerHTML = "You must confirm password.";
       valid = false;
-    };
-    if (pass != pass2) {
-      document.getElementById("no_entry").innerHTML = "Your passwords do not match</br>";
-      valid = false;
+    } else {
+      document.getElementById("no_pw2").innerHTML = "</br>";
     };
 
+    if (valid) {
+      if (pass != pass2) {
+        document.getElementById("no_name").innerHTML = "Your passwords do not match.";
+        valid = false;
+      }
+    };
     if (!valid) {
       return false;
     }
     // else {
-    //   window.location.href="create_user.php";
+    //   check_user();
     // }
+  }
+
+  function check_username() {
+    xmlhttp = new XMLHttpRequest();
+    var parameter = "user_name=" + encodeURI(document.getElementById('user_name').value);
+    xmlhttp.onreadystatechange=function() {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+        document.getElementById("ucheck").innerHTML=xmlhttp.responseText;
+      }
+    }
+    xmlhttp.open("POST", "check_user.php", "true");
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send(parameter);
+
   }
   </script>
 
@@ -68,17 +92,28 @@
   <div class = "container">
 
     <div class="jumbotron">
-      <h1>Website!</h1> 
-      <p>It's the website</p>
+      <h1>Restaurant Food Tracker</h1> 
+      <p>Track where you eat - and decide if it's worth it to go back</p>
     </div>
+    <div class = "row">
+      <div class = "col-sm-10">
 
+    
+
+      </div>
+
+      <div class = "col-sm-2"
+
+
+        <p><a href="logout.php" class="btn btn-success btn-lg" role="button">Back To Log In</a></p>
+      </div>
     <div class = "row">
       <div class = "col-sm-3">
         
 
       </div>
       <div class = "col-sm-9">
-        <div class ="col-sm-6">
+        <div class ="col-sm-5">
 
 
 <!-- form entry to log in -->
@@ -89,19 +124,42 @@
             <p>Name:</p>
               <p><input type="text" name="name" id="name"></p>
             <p>UserName:</p>
-              <p><input type="text" name="user_name" id="user_name"></p>
+              <p><input type="text" name="user_name" onchange = "check_username()" id="user_name"></p>
 
               <p>Password:</p>
               <p><input type="password" name="pw" id = "pw"></p>
               <p>Confirm Password:</p>
               <p><input type="password" name="pw2" id = "pw2"></p>
               
-              <p><input type="submit" value = "Register"></p>
+              <p><input type="submit" class = "btn btn-default btn-lg" value = "Register"></p>
           </fieldset>
           </form>
+
+          <!-- <form action = "check_user.php" method= "POST">
+            <fieldset>
+            <legend>Create Account</legend>
+            
+            <p>UserName:</p>
+              <p><input type="text" name="user_name" onchange ="check_user()" id="user_name"></p>
+
+              
+              
+              <p><input type="submit" class = "btn btn-default btn-lg" value = "Register"></p>
+          </fieldset>
+          </form> -->
         </div>
-        <div class ="col-sm-6">
-          <div id = "no_entry"></div>
+        <div class ="col-sm-7">
+          </br></br></br></br>
+          <div id = "no_name"></div>
+          </br></br>
+          <div id = "no_user"></div><div id = "ucheck"></div>
+          </br></br>
+          <div id = "no_pw"></div>
+          </br></br>
+          <div id = "no_pw2"></div>
+          </br></br>
+          
+          
         </div>
 
 

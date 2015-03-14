@@ -29,12 +29,16 @@
     var y = document.getElementById("pw").value;
     var valid = true;
     if (x == null || x == "") {
-      document.getElementById("pwcheck").innerHTML = "You must enter a username.</br>";
+      document.getElementById("ucheck").innerHTML = "You must enter a username.</br>";
       valid = false;
+    } else {
+      document.getElementById("ucheck").innerHTML = "</br>";
     };
     if (y == null || y == "") {
       document.getElementById("pwcheck").innerHTML = "You must enter a password.</br>";
       valid = false;
+    } else {
+      document.getElementById("pwcheck").innerHTML = "</br>";
     };
     if (!valid) {
       return;
@@ -55,7 +59,7 @@
           window.location.href="listing.php";
         }
         else {
-          document.getElementById("pwcheck").innerHTML=rec.responseText;
+          document.getElementById("ucheck").innerHTML=rec.responseText;
         }
       }
     }
@@ -73,17 +77,45 @@
   <div class = "container">
 
     <div class="jumbotron">
-      <h1>Restaurant Tracker</h1> 
-      <p>It's the website</p>
+      <h1>Restaurant Food Tracker</h1> 
+      <p>Track where you eat - and decide if it's worth it to go back</p>
     </div>
+    <div class = "row">
+      <div class = "col-sm-10">
 
+   <!--  <nav class="navbar navbar-inverse">
+      
+         <div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="add_listing.php">Add Listing</a></li>
+            <li><a href="view_all_listings.php">View Public Listings</a></li>
+            <li><a href="#">Page 3</a></li>
+            
+          </ul>
+        </div>
+      
+    </nav>
+
+      </div>
+
+      <div class = "col-sm-2"
+
+
+        <p><a href="logout.php" class="btn btn-danger" role="button">Log Out</a></p>
+      </div> -->
     <div class = "row">
       <div class = "col-sm-3">
         
 
       </div>
       <div class = "col-sm-9">
-        <div class ="col-sm-3">
+        <h2>Welcome!</h2>
+        <hr>
+        <p class = "text-info">This website allows you to store information on restaurants that you've gone to.</p>
+        <p class = "text-info">It tracks the restaurant and specific location you went to, how many people went with you, how much you spent, what you thought about it, and a rating.</p>
+        <p class = "text-info">Your information is private but you can make it available for other reigstered users to see.</p><hr>
+        <div class ="col-sm-4">
 
 
 <!-- form entry to log in -->
@@ -98,14 +130,16 @@
               <p><input type="password" name="pw" id= "pw"></p>
               
               
-              <p><input type="button" onclick= "validate()" value = "Log In"></p>
+              <p><input type="button" onclick= "validate()" class = "btn btn-default btn-lg" value = "Log In"></p>
           </fieldset>
 
           </form>
           <p>Not a member? <a href="register.php">Register</a></p>
         </div>
-        <div class ="col-sm-9">
+        <div class ="col-sm-8">
           </br></br></br></br>
+          <div id = "ucheck"></div>
+          </br></br></br>
           <div id = "pwcheck"></div>
         </div>
 

@@ -54,7 +54,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="add_listing.php">Add Listing</a></li>
-            <li><a href="view_all_listings.php">View Public Listings</a></li>
+            <li><a href="#">View Public Listings</a></li>
             <li><a href="#">Page 3</a></li>
             
           </ul>
@@ -76,24 +76,24 @@
 
       </div>
       <div class = "col-sm-9">
-        <h2>Your Restaurant Listings</h2>
+        <h2>Public Restaurant Listings</h2>
         <div id = "list"></div>
         <?php
-        if (!($stmt = $mysqli->prepare("SELECT id, restaurant_name, description, address, city, state, rating, cost, diners, date_of_visit, show_public FROM restaurant WHERE user = ?"))) {
+        if (!($stmt = $mysqli->prepare("SELECT restaurant_name, description, address, city, state, rating, cost, diners, date_of_visit, user FROM restaurant WHERE show_public = 1"))) {
          echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
           }
           
-          $user = $_SESSION['valid_user'];
+          // $user = $_SESSION['valid_user'];
           
-          if (!$stmt->bind_param("s", $user)) {
-            echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
-          }
+          // if (!$stmt->bind_param("s", $user)) {
+          //   echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          // }
 
           if (!$stmt->execute()) {
             echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
 
-          $id = NULL;
+          $user = NULL;
           $restaurant_name = NULL;
           $description = NULL;
           $address = NULL;
@@ -103,33 +103,32 @@
           $cost = NULL;
           $diners = NULL;
           $visit_date = NULL;
-          $show_public = NULL;
-          $make_public = NULL;
-          $change = NULL;
+          // $show_public = NULL;
+          // $make_public = NULL;
+          // $change = NULL;
 
-          if (!$stmt->bind_result($id, $restaurant_name, $description, $address, $city, $state, $rating, $cost, $diners, $visit_date, $show_public)) {
+          if (!$stmt->bind_result($restaurant_name, $description, $address, $city, $state, $rating, $cost, $diners, $visit_date, $user)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
           
-          echo $restaurant_name;
-          echo $_SESSION['valid_user'];
+          
 
           
           while ($stmt->fetch()) {
-            if ($show_public == 1) {
-              $make_public = "Public";
-              $change = "Change to Private";
-            } else {
-              $make_public = "Private";
-              $change = "Make Public";
-            }
-            echo '<form action="change_access.php" method="POST">';
+            // if ($show_public == 1) {
+            //   $make_public = "Public";
+            //   $change = "Change to Private";
+            // } else {
+            //   $make_public = "Private";
+            //   $change = "Make Public";
+            // }
+            // echo '<form action="change_access.php" method="POST">';
             echo '<table class = "table-bordered"><tr><td>Restaurant:' . $restaurant_name . '</td><td>Visit Date:' . $visit_date . '</td><td>Diners:' . $diners . '</td><td>Cost:' . $cost . '</td></tr>';
-            echo '<input type = "hidden" name = "id" value = "'. $id .'">';
-            echo '<tr><td>Description:' . $description . '</td></tr><tr><td>Rating:' . $rating . '</td><td>' . $make_public . '</td><td><input type = "submit" name = "check" value="' . $change . '"</td></tr>';
+            //echo '<input type = "hidden" name = "id" value = "'. $id .'">';
+            echo '<tr><td>Description:' . $description . '</td></tr><tr><td>Rating:' . $rating . '</td></tr>';
             echo '<tr><td>Location:</td><td></td></tr>';
             echo '</table></br>';
-            echo '</form>';
+            // echo '</form>';
             
            } 
 

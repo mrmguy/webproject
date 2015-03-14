@@ -1,3 +1,10 @@
-#pwcheck {
+#pwcheck, #ucheck, #no_name, #no_user, #no_pw, #no_pw2 {
 	color: red;
+}
+p {
+	font-size: 16px;
+}
+
+.jumbotron {
+	background-color: red;
 }
