@@ -31,6 +31,7 @@
     var un = document.getElementById("user_name").value;
     var pass = document.getElementById("pw").value;
     var pass2 = document.getElementById("pw2").value;
+    var test =document.getElementById("ucheck").innerHTML;
     var valid = true;
     if (n == null || n == "") {
       document.getElementById("no_name").innerHTML = "You must enter a name.";
@@ -63,12 +64,17 @@
         valid = false;
       }
     };
+    if (test != "The username is available") {
+      valid = false;
+    };
+    
+
     if (!valid) {
       return false;
     }
-    // else {
-    //   check_user();
-    // }
+    else {
+      return true;
+    }
   }
 
   function check_username() {
@@ -124,7 +130,7 @@
             <p>Name:</p>
               <p><input type="text" name="name" id="name"></p>
             <p>UserName:</p>
-              <p><input type="text" name="user_name" onchange = "check_username()" id="user_name"></p>
+              <p><input type="text" name="user_name" onkeyup="check_username()"  id="user_name"></p>
 
               <p>Password:</p>
               <p><input type="password" name="pw" id = "pw"></p>
@@ -152,7 +158,9 @@
           </br></br></br></br>
           <div id = "no_name"></div>
           </br></br>
-          <div id = "no_user"></div><div id = "ucheck"></div>
+          <div id = "no_user"></div>
+          </br>
+          <div id = "ucheck"></div>
           </br></br>
           <div id = "no_pw"></div>
           </br></br>
