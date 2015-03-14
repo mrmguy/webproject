@@ -27,10 +27,6 @@
     alert("hello");
   }
 
-
-
-
-
   </script>
 
 
@@ -52,10 +48,10 @@
       
          <div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="add_listing.php">Add Listing</a></li>
-            <li><a href="view_all_listings.php">View Public Listings</a></li>
-            <li><a href="#">Page 3</a></li>
+            <li class="active"><a href="#">Your Restaurants</a></li>
+            <li><a href="add_listing.php">Add Restaurant</a></li>
+            <li><a href="view_all_listings.php">View Public Restaurant Reviews</a></li>
+            
             
           </ul>
         </div>
@@ -64,10 +60,11 @@
 
       </div>
 
-      <div class = "col-sm-2"
+      <div class = "col-sm-2">
 
 
         <p><a href="logout.php" class="btn btn-danger" role="button">Log Out</a></p>
+        <h6>Logged in as: <?php echo $_SESSION['valid_user']?></h6>
       </div>
       
     <div class = "row">
@@ -111,8 +108,8 @@
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
           
-          echo $restaurant_name;
-          echo $_SESSION['valid_user'];
+          // echo $restaurant_name;
+          // echo $_SESSION['valid_user'];
 
           
           while ($stmt->fetch()) {
@@ -124,14 +121,20 @@
               $change = "Make Public";
             }
             echo '<form action="change_access.php" method="POST">';
-            echo '<table class = "table-bordered"><tr><td>Restaurant:' . $restaurant_name . '</td><td>Visit Date:' . $visit_date . '</td><td>Diners:' . $diners . '</td><td>Cost:' . $cost . '</td></tr>';
+            echo '<table class = "table"><tr><th>Restaurant:</th><td>' . $restaurant_name . '</br>' . $address . '</br>' . $city . ', ' . $state . '</td></tr>
+            <tr><th>Visit Date:</th><td>' . $visit_date . '</td></tr>
+            <tr><th>Diners:</th><td>' . $diners . '</td></tr>
+            <tr><th>Cost:</th><td>$' . $cost . '</td></tr>';
+
             echo '<input type = "hidden" name = "id" value = "'. $id .'">';
-            echo '<tr><td>Description:' . $description . '</td></tr><tr><td>Rating:' . $rating . '</td><td>' . $make_public . '</td><td><input type = "submit" name = "check" value="' . $change . '"</td></tr>';
-            echo '<tr><td>Location:</td><td></td></tr>';
+            echo '<tr><th>Description:</th><td>' . $description . '</td></tr>
+            <tr><th>Rating:</th><td>' . $rating . '</td></tr>
+            <tr><td colspan="2">This listing is ' . $make_public . '</td<td><input type = "submit" class = "btn" name = "check" value="' . $change . '"</td></tr>';
+            echo '<tr><th>Location:</th><td><iframe width="600" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='. $restaurant_name . '+' .$address . '+'.$city.'+' .$state.'&key=AIzaSyAr52i-uefQ307Ux8RjnK9cRhhvB5aFyVY"></iframe></td></tr>';
             echo '</table></br>';
             echo '</form>';
             
-           } 
+          } 
 
 $mysqli->close();
 

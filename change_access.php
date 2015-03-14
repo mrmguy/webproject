@@ -11,7 +11,7 @@
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
 
-  $id = $_POST['id']; // get name of movie to take action on
+  $id = $_POST['id']; 
   echo $id;
   echo $_POST['check'];
 // toggle availability of movie
@@ -34,5 +34,5 @@
   }
 
 $mysqli->close();
-//header('Location: listing.php');
+header('Location: listing.php');
 ?>
