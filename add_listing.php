@@ -33,6 +33,8 @@
     var cost = document.getElementById("cost").value;
     var rating = document.getElementById("rating").value;
     var description = document.getElementById("description").value;
+    var priv = document.getElementById("private_checked").checked;
+    var shar = document.getElementById("share_checked").checked;
     var valid = true;
     if (restaurant == null || restaurant == "") {
       document.getElementById("no_restaurant").innerHTML = "You must enter a restaurant name.";
@@ -97,27 +99,13 @@
     } else {
       document.getElementById("no_description").innerHTML = "</br>";
     };
-
-    // if (n == null || n == "") {
-    //   document.getElementById("no_entry").innerHTML = "<p>You must enter a name.</p>";
-    //   valid = false;
-    // };
-    // if (un == null || un == "") {
-    //   document.getElementById("no_entry").innerHTML = "You must enter a username.</br>";
-    //   valid = false;
-    // };
-    // if (pass == null || pass == "") {
-    //   document.getElementById("no_entry").innerHTML = "You must enter a password.</br>";
-    //   valid = false;
-    // };
-    // if (pass2 == null || pass2 == "") {
-    //   document.getElementById("no_entry").innerHTML = "You must confirm password.</br>";
-    //   valid = false;
-    // };
-    // if (pass != pass2) {
-    //   document.getElementById("no_entry").innerHTML = "Your passwords do not match</br>";
-    //   valid = false;
-    // };
+    if ((!priv) && (!shar)) {
+      document.getElementById("no_choice").innerHTML = "select if you would like to share this information.";
+      valid = false;
+    } else {
+      document.getElementById("no_choice").innerHTML = "</br>";
+    };
+    
 
     if (!valid) {
       return false;
@@ -172,7 +160,7 @@
             <form action="add_listing_db.php" onsubmit="return validate()" method="POST">
           <fieldset>
             <legend>Add restaurant</legend>
-            <p>Restaurant Name(required):</p>
+            <h5>Restaurant Name<small> (required):</small></h5>
               <p><input type="text" name="restaurant_name" id = "restaurant_name"></p>
 
               <p>Visit Date:</p>
@@ -191,6 +179,7 @@
               <p><input type="number" name="rating" id= "rating" min="1" max="10"></p>
               <p>Description of visit:</p>
               <p><textarea name="description" id="description" rows="10" cols="40"></textarea></textarea></p>
+              <p><input type="radio" name="share" id = "private_checked" value="0">Private / <input type="radio" name="share" id = "share_checked" value="1">Share with other on the site</p>
               <p><input type="submit" value = "Add"></p>
           </fieldset>
 
@@ -216,6 +205,8 @@
           <div id = "no_rating"></div>
           </br></br>
           <div id = "no_description"></div>
+          </br></br>
+          <div id = "no_choice"></div>
           </br></br>
           </div>
 

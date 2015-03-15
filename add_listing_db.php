@@ -15,7 +15,7 @@
 
 // include("sqldb.php");
      
-			if (!($stmt = $mysqli->prepare("INSERT INTO restaurant(restaurant_name, description, address, city, state, rating, cost, diners, date_of_visit, user) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?)"))) {
+			if (!($stmt = $mysqli->prepare("INSERT INTO restaurant(restaurant_name, description, address, city, state, rating, cost, diners, date_of_visit, show_public, user) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)"))) {
      echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 }
           $restaurant_name = $_POST['restaurant_name'];
@@ -28,10 +28,11 @@
           $diners = $_POST['diners'];
           $user = $_SESSION['valid_user'];
           $visit_date = $_POST['visit_date'];
+          $public_share = $_POST['share'];
           
 
 
-          if (!$stmt->bind_param("sssssiiiss", $restaurant_name, $description, $address, $city, $state, $rating, $cost, $diners, $visit_date, $user)) {
+          if (!$stmt->bind_param("sssssiiisis", $restaurant_name, $description, $address, $city, $state, $rating, $cost, $diners, $visit_date, $public_share, $user)) {
             echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
 
@@ -40,8 +41,8 @@
           }
           
           
-          echo $restaurant_name;
-          echo $_SESSION['valid_user'];
+          // echo $restaurant_name;
+          // echo $_SESSION['valid_user'];
           
           // while ($stmt->fetch()) {
           //   echo '<p>Name:' . $user_check . '</p>';
@@ -49,4 +50,5 @@
           //  } 
 
 $mysqli->close();
+header('Location: listing.php')
 ?>

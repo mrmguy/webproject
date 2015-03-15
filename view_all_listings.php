@@ -123,13 +123,20 @@
             //   $make_public = "Private";
             //   $change = "Make Public";
             // }
-            // echo '<form action="change_access.php" method="POST">';
-            echo '<table class = "table-bordered"><tr><td>Restaurant:' . $restaurant_name . '</td><td>Visit Date:' . $visit_date . '</td><td>Diners:' . $diners . '</td><td>Cost:' . $cost . '</td></tr>';
-            //echo '<input type = "hidden" name = "id" value = "'. $id .'">';
-            echo '<tr><td>Description:' . $description . '</td></tr><tr><td>Rating:' . $rating . '</td></tr>';
-            echo '<tr><td>Location:</td><td></td></tr>';
+            echo '<table class = "table"><tr><th>Restaurant:</th><td>' . $restaurant_name . '</br>' . $address . '</br>' . $city . ', ' . $state . '</td></tr>
+            <tr><th>Visit Date:</th><td>' . $visit_date . '</td></tr>
+            <tr><th>Diners:</th><td>' . $diners . '</td></tr>
+            <tr><th>Cost:</th><td>$' . $cost . '</td></tr>';
+
+            
+            echo '<tr><th>Description:</th><td>' . $description . '</td></tr>
+            <tr><th>Rating:</th><td>';
+            for ($i=0; $i < $rating ; $i++) { 
+              echo '<img src="spoon.png" alt="spoon" width="50" height = "50">';
+            }
+            echo $rating . ' out of 10</td></tr>';
+            echo '<tr><th>Location:</th><td><iframe width="600" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='. $restaurant_name . '+' .$address . '+'.$city.'+' .$state.'&key=AIzaSyAr52i-uefQ307Ux8RjnK9cRhhvB5aFyVY"></iframe></td></tr>';
             echo '</table></br>';
-            // echo '</form>';
             
            } 
 
