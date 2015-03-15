@@ -44,7 +44,6 @@
       <h1>Restaurant Tracker</h1> 
       <p>It's the website</p>
     </div>
-
     <div class = "row">
       <div class = "col-sm-10">
 
@@ -52,10 +51,10 @@
       
          <div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="add_listing.php">Add Listing</a></li>
-            <li><a href="#">View Public Listings</a></li>
-            <li><a href="#">Page 3</a></li>
+            <li><a href="listing.php">Your Restaurants</a></li>
+            <li><a href="add_listing.php">Add Restaurant</a></li>
+            <li class = "active"><a href="#">View Public Restaurant Reviews</a></li>
+            
             
           </ul>
         </div>
@@ -64,11 +63,13 @@
 
       </div>
 
-      <div class = "col-sm-2"
+      <div class = "col-sm-2">
 
 
         <p><a href="logout.php" class="btn btn-danger" role="button">Log Out</a></p>
+        <h6>Logged in as: <?php echo $_SESSION['valid_user']?></h6>
       </div>
+    
       
     <div class = "row">
       <div class = "col-sm-3">

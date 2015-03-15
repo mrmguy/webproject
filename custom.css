@@ -1,5 +1,8 @@
-#pwcheck, #ucheck, #no_name, #no_user, #no_pw, #no_pw2 {
+#pwcheck, #ucheck, #no_name, #no_user, #no_pw, #no_pw2, #errors {
 	color: red;
+}
+#check {
+	color: green;
 }
 p {
 	font-size: 16px;
