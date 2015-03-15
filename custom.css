@@ -7,7 +7,12 @@
 p {
 	font-size: 16px;
 }
-
-.jumbotron {
-	background-color: red;
+.btn-success {
+	background-color: #006600;
 }
+.jumbotron {
+	background-color: #6B0024;
+	color: white;
+}
+
+

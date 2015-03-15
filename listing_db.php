@@ -17,7 +17,7 @@
      
 			if (!($stmt = $mysqli->prepare("SELECT restaurant_name, description, address, city, state, rating, cost, diners, date_of_visit FROM restaurant WHERE user = ?"))) {
      echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
-}
+      }
           
           $user = $_SESSION['valid_user'];
           

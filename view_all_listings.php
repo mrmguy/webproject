@@ -1,7 +1,7 @@
 <?php
   session_start();
-  if (isset($_SESSION['valid_user'])) {
-      echo $_SESSION['valid_user'];
+  if (!isset($_SESSION['valid_user'])) {
+      header('Location: main.php');
   }
   error_reporting(E_ALL);
   ini_set('display-errors', 'On');
@@ -23,58 +23,35 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="custom.css">
   <script type="text/javascript">
-  function change_access() {
-    alert("hello");
-  }
-
-
-
-
-
+  
   </script>
-
-
-
 </head>
 <body>
   <body>
   <div class = "container">
-
     <div class="jumbotron">
-      <h1>Restaurant Tracker</h1> 
-      <p>It's the website</p>
+      <h1>Restaurant Food Tracker</h1> 
+      <p>Track where you eat - and decide if it's worth it to go back</p>
     </div>
     <div class = "row">
       <div class = "col-sm-10">
-
-    <nav class="navbar navbar-inverse">
-      
-         <div>
-          <ul class="nav navbar-nav">
-            <li><a href="listing.php">Your Restaurants</a></li>
-            <li><a href="add_listing.php">Add Restaurant</a></li>
-            <li class = "active"><a href="#">View Public Restaurant Reviews</a></li>
-            
-            
-          </ul>
-        </div>
-      
-    </nav>
-
+        <nav class="navbar navbar-inverse">
+             <div>
+              <ul class="nav navbar-nav">
+                <li><a href="listing.php">Your Restaurants</a></li>
+                <li><a href="add_listing.php">Add Restaurant</a></li>
+                <li class = "active"><a href="#">View Public Restaurant Reviews</a></li>
+              </ul>
+            </div>
+        </nav>
       </div>
-
       <div class = "col-sm-2">
-
-
         <p><a href="logout.php" class="btn btn-danger" role="button">Log Out</a></p>
         <h6>Logged in as: <?php echo $_SESSION['valid_user']?></h6>
       </div>
-    
-      
+      </div>
     <div class = "row">
-      <div class = "col-sm-3">
-        
-
+      <div class = "col-sm-1">
       </div>
       <div class = "col-sm-9">
         <h2>Public Restaurant Listings</h2>
@@ -83,17 +60,9 @@
         if (!($stmt = $mysqli->prepare("SELECT restaurant_name, description, address, city, state, rating, cost, diners, date_of_visit, user FROM restaurant WHERE show_public = 1"))) {
          echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
           }
-          
-          // $user = $_SESSION['valid_user'];
-          
-          // if (!$stmt->bind_param("s", $user)) {
-          //   echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
-          // }
-
           if (!$stmt->execute()) {
             echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-
           $user = NULL;
           $restaurant_name = NULL;
           $description = NULL;
@@ -111,10 +80,6 @@
           if (!$stmt->bind_result($restaurant_name, $description, $address, $city, $state, $rating, $cost, $diners, $visit_date, $user)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
-          
-
-          
           while ($stmt->fetch()) {
             // if ($show_public == 1) {
             //   $make_public = "Public";
@@ -127,8 +92,6 @@
             <tr><th>Visit Date:</th><td>' . $visit_date . '</td></tr>
             <tr><th>Diners:</th><td>' . $diners . '</td></tr>
             <tr><th>Cost:</th><td>$' . $cost . '</td></tr>';
-
-            
             echo '<tr><th>Description:</th><td>' . $description . '</td></tr>
             <tr><th>Rating:</th><td>';
             for ($i=0; $i < $rating ; $i++) { 
@@ -140,15 +103,11 @@
             
            } 
 
-$mysqli->close();
-
-
-
-
+          $mysqli->close();
         ?>
 
       </div>
-
+      <div class = "col-sm-2"></div>
 
     </div>
   </div>
